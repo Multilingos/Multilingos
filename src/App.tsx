@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+
+import { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    setLoading(true);
+    setOutput('');
+
+    try {
+      const res = await fetch('http://localhost:5000/api/translate', { // this needs to be our backend url
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: input })
+      });
+
+      const data = await res.json();
+      setOutput(data.result || 'No result returned from AI.');
+    } catch (err) {
+      console.error(err);
+      setOutput('⚠️ Error: Could not connect to AI backend.');
+    }
+
+    setLoading(false);
+    setInput('');
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+    <div className="app-container">
+      <h1>🌐 LLM Translator</h1>
+
+      <form onSubmit={handleSubmit}>
+        <textarea
+          className="input-box"
+          placeholder="Enter your text here..."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        />
+
+        <button type="submit" disabled={loading}>
+          {loading ? 'Processing...' : 'Translate & Explain'}
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+      </form>
+
+      <div className="output-box">
+        {output || (loading ? "⏳ Waiting for AI..." : "Your AI-powered translation and context will appear here...")}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
