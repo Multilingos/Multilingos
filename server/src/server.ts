@@ -1,9 +1,8 @@
 import express, { ErrorRequestHandler } from 'express';
-
 import { ServerError } from './types/types.js';
 
 //! import middleware here:
-// import { parseUserQuery } from ' file path ';
+import { parseUserQuery } from './controllers/parsers';
 // import { queryAiEmbedding, aiCompletion } from ' file path ';
 // import { queryVectorDb } from ' file path ';
 
@@ -15,7 +14,7 @@ app.use(express.json());
 
 app.post(
   '/api',
-  // parseUserQuery,
+  parseUserQuery,
   // queryAiEmbedding
   // queryVectorDb,
   // aiCompletion,
