@@ -23,7 +23,7 @@ function App() {
       });
 
       const data = await res.json();
-      setOutput(data.result || 'No result returned from AI.');
+      setOutput(data.response || 'No result returned from AI.');
     } catch (err) {
       console.error(err);
       setOutput('⚠️ Error: Could not connect to AI backend.');
