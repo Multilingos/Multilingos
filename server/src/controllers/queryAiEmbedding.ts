@@ -1,6 +1,6 @@
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 import OpenAI from 'openai';
-import { ServerError } from '../src/types/types'
+import { ServerError } from '../types/types'
 import 'dotenv/config'; 
 
 const openai = new OpenAI({
