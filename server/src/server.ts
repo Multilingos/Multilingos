@@ -11,7 +11,7 @@ const PORT=3000
 //* this will take the plain text input and change it into JSON format
 app.use(express.json());
 
-app.post('/src',
+app.post('/api',
    // parseUserQuery,
    // queryAiEmbedding
    // queryVectorDb,
