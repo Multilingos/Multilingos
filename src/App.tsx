@@ -16,10 +16,10 @@ function App() {
     setOutput('');
 
     try {
-      const res = await fetch('/api', { // this needs to be our backend url
+      const res = await fetch('/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: input })
+        body: JSON.stringify({ userQuery: input })
       });
 
       const data = await res.json();
