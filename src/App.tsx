@@ -16,14 +16,14 @@ function App() {
     setOutput('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/translate', { // this needs to be our backend url
+      const res = await fetch('/api', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ text: input })
+        body: JSON.stringify({ userQuery: input })
       });
 
       const data = await res.json();
-      setOutput(data.result || 'No result returned from AI.');
+      setOutput(data.response || 'No result returned from AI.');
     } catch (err) {
       console.error(err);
       setOutput('⚠️ Error: Could not connect to AI backend.');
