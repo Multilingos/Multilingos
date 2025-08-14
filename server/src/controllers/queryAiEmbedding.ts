@@ -30,7 +30,8 @@ export const queryAiEmbedding: RequestHandler = async (
       input: inputQuery.trim(),
       encoding_format: "float",
     });
-
+    // console.log('🚀 embedding:',embedding.data?.[0]?.embedding);
+    
     res.locals.embeddedQuery = embedding.data?.[0]?.embedding || undefined;
 
     return next();

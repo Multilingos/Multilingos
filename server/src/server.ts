@@ -3,6 +3,7 @@ import { ServerError } from './types/types.js';
 
 //! import middleware here:
 import { parseUserQuery } from './controllers/parsers';
+import { queryAiEmbedding } from './controllers/queryAiEmbedding';
 // import { queryAiEmbedding, aiCompletion } from ' file path ';
 // import { queryVectorDb } from ' file path ';
 
@@ -15,11 +16,11 @@ app.use(express.json());
 app.post(
   '/api',
   parseUserQuery,
-  // queryAiEmbedding
+  queryAiEmbedding,
   // queryVectorDb,
   // aiCompletion,
   (_req, res) => {
-    res.status(200).json({ response: 'best team ever' });
+    res.status(200).json({query: res.locals.inputQuery,vectorPreview: res.locals.embeddedQuery?.slice(0, 8),});
   }
 );
 
