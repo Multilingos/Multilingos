@@ -11,6 +11,16 @@ const PORT=3000
 //* this will take the plain text input and change it into JSON format
 app.use(express.json());
 
+app.post('/api',
+   // parseUserQuery,
+   // queryAiEmbedding
+   // queryVectorDb,
+   // aiCompletion,
+   (_req, res) => {
+      res.status(200).json({ response: 'best team ever' });
+   }
+)
+
 app.listen(PORT, () => {
    console.log(`Server running on http://localhost:${PORT}`);
 });
