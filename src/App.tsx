@@ -16,7 +16,7 @@ function App() {
     setOutput('');
 
     try {
-      const res = await fetch('http://localhost:5000/api/translate', { // this needs to be our backend url
+      const res = await fetch('/api', { // this needs to be our backend url
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ text: input })
