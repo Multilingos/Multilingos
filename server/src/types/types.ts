@@ -1,5 +1,5 @@
 export type ServerError = {
-  log: string;
-  status: number;
-  message: { err: string };
+    log: string;
+    status: number;
+    message: { err: string };
 };
