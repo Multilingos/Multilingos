@@ -1,6 +1,6 @@
-import express, { ErrorRequestHandler } from "express";
+import express, { ErrorRequestHandler } from 'express';
 
-import { ServerError } from "./types/types.js";
+import { ServerError } from './types/types.js';
 
 //! import middleware here:
 // import { parseUserQuery } from ' file path ';
@@ -14,13 +14,13 @@ const PORT = 3000;
 app.use(express.json());
 
 app.post(
-  "/api",
+  '/api',
   // parseUserQuery,
   // queryAiEmbedding
   // queryVectorDb,
   // aiCompletion,
   (_req, res) => {
-    res.status(200).json({ response: "best team ever" });
+    res.status(200).json({ response: 'best team ever' });
   }
 );
 
@@ -31,9 +31,9 @@ const errorHandler: ErrorRequestHandler = (
   _next
 ) => {
   const defaultErr: ServerError = {
-    log: "Express error handler caught unknown middleware error",
+    log: 'Express error handler caught unknown middleware error',
     status: 500,
-    message: { err: "An error occurred" },
+    message: { err: 'An error occurred' },
   };
   const errorObj: ServerError = { ...defaultErr, ...err };
   console.log(errorObj.log);
