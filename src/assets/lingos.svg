@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Translation globe icon">
+  <defs>
+    <style>
+      .line{fill:none;stroke:#0e2a47;stroke-width:28;stroke-linecap:round;stroke-linejoin:round}
+      .fill-dark{fill:#0e2a47}
+      .fill-light{fill:#61b4ff}
+    </style>
+  </defs>
+
+  <!-- Globe base -->
+  <circle cx="212" cy="256" r="168" class="fill-light"/>
+  <circle cx="212" cy="256" r="168" class="line"/>
+  <!-- Meridians & parallels -->
+  <path d="M76 256h272" class="line"/>
+  <path d="M212 88c-54 48-54 288 0 336" class="line"/>
+  <path d="M212 88c54 48 54 288 0 336" class="line" transform="scale(-1,1) translate(-424,0)"/>
+  <path d="M109 168c64 24 142 24 206 0" class="line"/>
+  <path d="M109 344c64-24 142-24 206 0" class="line"/>
+
+  <!-- Speech bubble: 'A' (top-right) -->
+  <g transform="translate(312,96)">
+    <path d="M24 0h112a24 24 0 0 1 24 24v72a24 24 0 0 1-24 24h-48l-32 30c-8 7-20 1-20-9v-21H24A24 24 0 0 1 0 96V24A24 24 0 0 1 24 0Z" class="fill-dark"/>
+    <!-- Letter A (kept as vector for crispness) -->
+    <path d="M60 94l25-64h14l25 64h-15l-6-16H81l-6 16H60Zm25-28h24l-12-32-12 32Z" fill="#ffffff"/>
+  </g>
+
+  <!-- Speech bubble: '文' (lower-right) -->
+  <g transform="translate(276,256)">
+    <path d="M28 0h144a28 28 0 0 1 28 28v80a28 28 0 0 1-28 28h-60l-38 36c-9 8-23 1-23-10v-26H28A28 28 0 0 1 0 108V28A28 28 0 0 1 28 0Z" class="fill-light"/>
+    <path d="M28 0h144a28 28 0 0 1 28 28v80a28 28 0 0 1-28 28h-60l-38 36c-9 8-23 1-23-10v-26H28A28 28 0 0 1 0 108V28A28 28 0 0 1 28 0Z" class="line"/>
+    <!-- '文' glyph (simplified) -->
+    <path d="M67 48h94m-74 24c18 10 38 20 60 26m-92 0c20-6 41-15 62-26m-60 54h90m-64 24h38" stroke="#0e2a47" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  </g>
+</svg>
