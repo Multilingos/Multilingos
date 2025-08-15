@@ -22,8 +22,9 @@ OPENAI_API_KEY='<Create and put OpenAI key here>'
 PINECONE_INDEX='translator'
 ```
 8. Download `upsertTranslator.js` [data file](https://drive.google.com/file/d/1akhZ4HwmcEsyEKmKB-7JxldgcAiVmE8c/view?usp=sharing)
-9. Place `upsertTranslator.js` in the `server` directory
-10. `npm run upsertTranslator`
+9. Place `upsertTranslator.js` in the `server/offline` directory
+10. `cd ..` to `server` directory
+11. `npm run upsertTranslator`
 
 
 ### Run server
