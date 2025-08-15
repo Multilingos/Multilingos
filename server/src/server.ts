@@ -21,7 +21,7 @@ app.post(
   queryVectorDb,
   // aiCompletion,
   (_req, res) => {
-    res.status(200).json({query: res.locals.inputQuery,vectorPreview: res.locals.embeddedQuery?.slice(0, 8), pineconeResults: res.locals.pineconeQueryResult});
+    res.status(200).json({ response: 'best team ever' });
   }
 );
 
