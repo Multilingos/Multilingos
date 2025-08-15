@@ -1,12 +1,9 @@
 import express, { ErrorRequestHandler } from 'express';
-import { ServerError } from './types/types.js';
 
-//! import middleware here:
+import { ServerError } from './types/types.js';
 import { parseUserQuery } from './controllers/parsers';
-import { queryAiEmbedding } from './controllers/queryAiEmbedding';
-import { queryVectorDb } from './controllers/queryVectorDb'
-// import { queryAiEmbedding, aiCompletion } from ' file path ';
-// import { queryVectorDb } from ' file path ';
+import { queryAiEmbedding, aiCompletion } from './controllers/queryAi';
+import { queryVectorDb } from './controllers/queryVectorDb';
 
 const app = express();
 const PORT = 3000;
@@ -19,15 +16,15 @@ app.post(
   parseUserQuery,
   queryAiEmbedding,
   queryVectorDb,
-  // aiCompletion,
+  aiCompletion,
   (_req, res) => {
-    res.status(200).json({ response: 'best team ever' });
+    res.status(200).json({ response: res.locals.aiOutput  });
   }
 );
 
 const errorHandler: ErrorRequestHandler = (
   err: ServerError,
-  _req,
+    _req,
   res,
   _next
 ) => {
