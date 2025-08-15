@@ -63,8 +63,7 @@ async function formatReport(data: string): Promise<string> {
   const response = await openai.chat.completions.create({
     model: 'gpt-4o-mini', // gpt-4o or gpt-3.5-turbo
     messages: [
-      { role: 'system', content: friendlyReport(data) },
-      // { role: 'user', content: question },
+      { role: 'user', content: friendlyReport(data) },
     ],
   });
   const content = response.choices?.[0]?.message?.content;
