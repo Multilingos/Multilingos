@@ -68,6 +68,8 @@ button:hover {
   text-align: left;
   font-size: 1rem;
   animation: glow 2s infinite alternate;
+  white-space: pre-wrap;  
+  line-height: 1.5;
 }
 
 @keyframes glow {
