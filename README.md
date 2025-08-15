@@ -1,6 +1,6 @@
 # Multilingo
 
-A personalized Language Learning translation ap.
+A personalized Language Learning translation app.
 
 ### Developer Setup
 
