@@ -1,7 +1,7 @@
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
 import OpenAI from 'openai';
-import { ServerError } from '../types/types'
-import 'dotenv/config'; 
+import { ServerError } from '../types/types';
+import 'dotenv/config';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,16 +10,16 @@ const openai = new OpenAI({
 const MODEL = 'text-embedding-3-small';
 
 export const queryAiEmbedding: RequestHandler = async (
- _req: Request,
+  _req: Request,
   res: Response,
   next: NextFunction
 ) => {
-  const {inputQuery} = res.locals
-  if(!inputQuery){
+  const { inputQuery } = res.locals;
+  if (!inputQuery) {
     const error: ServerError = {
-        log: 'queryOpenAIEmbedding did not receive a user query',
-        status: 500,
-        message: { err: 'An error occurred before querying OpenAI' },
+      log: 'queryOpenAIEmbedding did not receive a user query',
+      status: 500,
+      message: { err: 'An error occurred before querying OpenAI' },
     };
     return next(error);
   }
@@ -28,21 +28,37 @@ export const queryAiEmbedding: RequestHandler = async (
       model: MODEL,
       //just to make sure clean out the whitespace
       input: inputQuery.trim(),
-      encoding_format: "float",
+      encoding_format: 'float',
     });
     // console.log('🚀 embedding:',embedding.data?.[0]?.embedding);
-    
+
     res.locals.embeddedQuery = embedding.data?.[0]?.embedding || undefined;
 
     return next();
-
   } catch (err) {
     const error: ServerError = {
       log: `queryOpenAI: Error: OpenAI error: ${err}`,
       status: 500,
       message: { err: 'An error occurred while querying OpenAI' },
     };
-    
+
     return next(error);
   }
+};
+
+export const aiCompletion: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+ 
+  if (!res.locals.inputQuery) {
+    const error: ServerError = {
+      log: 'aiCompletion: Error: no input query',
+      status: 500,
+      message: { err: 'An error occurred while querying OpenAI' },
+    };
+    return next(error);
+  }
+  return next();
 };
