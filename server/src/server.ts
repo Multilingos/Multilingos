@@ -4,6 +4,7 @@ import { ServerError } from './types/types.js';
 //! import middleware here:
 import { parseUserQuery } from './controllers/parsers';
 import { queryAiEmbedding } from './controllers/queryAiEmbedding';
+import { queryVectorDb } from './controllers/queryVectorDb'
 // import { queryAiEmbedding, aiCompletion } from ' file path ';
 // import { queryVectorDb } from ' file path ';
 
@@ -17,10 +18,10 @@ app.post(
   '/api',
   parseUserQuery,
   queryAiEmbedding,
-  // queryVectorDb,
+  queryVectorDb,
   // aiCompletion,
   (_req, res) => {
-    res.status(200).json({query: res.locals.inputQuery,vectorPreview: res.locals.embeddedQuery?.slice(0, 8),});
+    res.status(200).json({query: res.locals.inputQuery,vectorPreview: res.locals.embeddedQuery?.slice(0, 8), pineconeResults: res.locals.pineconeQueryResult});
   }
 );
 
