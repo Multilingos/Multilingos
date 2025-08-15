@@ -5,13 +5,14 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "express": "nodemon --watch src --ext ts,json --exec \"ts-node src/server.ts\"",
-    "upsert-batch": "node offline/upsertTranslator.js"
+    "upsertTranslator": "node offline/upsertTranslator.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@pinecone-database/pinecone": "^6.1.2",
     "express": "^5.1.0",
     "openai": "^5.12.2"
   },

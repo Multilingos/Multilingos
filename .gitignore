@@ -21,8 +21,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-*.package-lock.json
-*.embedded_translator_data.json
+package-lock.json
+embedded_translator_data.json
 
 # for secrets
 .env
