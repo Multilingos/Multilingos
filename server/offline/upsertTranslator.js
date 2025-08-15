@@ -9,10 +9,6 @@ const __dirname = path.dirname(__filename);
 
 const INPUT_FILE = path.resolve(__dirname, "embedded_translator_data.json");
 const nsIdx = process.argv.findIndex((a) => a === "--ns");
-const NAMESPACE =
-  (nsIdx !== -1 && process.argv[nsIdx + 1]) ||
-  process.env.PINECONE_NAMESPACE ||
-  "";
 
 const EXPECTED_DIM = Number(process.env.EMBED_DIM || 1536);
 const BATCH_SIZE = Number(process.env.BATCH || 200);
@@ -25,7 +21,7 @@ if (!PINECONE_API_KEY || !PINECONE_INDEX) {
 }
 
 const pc = new Pinecone({ apiKey: PINECONE_API_KEY });
-const index = pc.index(PINECONE_INDEX).namespace(NAMESPACE);
+const index = pc.index(PINECONE_INDEX);
 
 function chunk(arr, n) {
   const out = [];
@@ -79,7 +75,7 @@ async function upsertBatches(batches) {
 }
 
 async function main() {
-  console.log(`Index: ${PINECONE_INDEX}, Namespace: "${NAMESPACE || "(default)"}"`);
+  console.log(`Index: ${PINECONE_INDEX}`);
   const items = await loadItems(INPUT_FILE);
   
   const records = items.map((it) => ({
